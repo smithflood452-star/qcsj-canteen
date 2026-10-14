@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EF7D1A">
+  <meta name="description" content="青春集市·比思睿生活驿站——大连理工大学盘锦校区第三食堂。档口地图、全部档口、阅读区/大使服务中心/交流区、环境展示与意见反馈。">
+  <title>青春集市 · 比思睿生活驿站 — 大连理工大学盘锦校区第三食堂</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23EF7D1A'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='bold'%3E集%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <!-- ============ 0. 顶部导航 ============ -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="青春集市 比思睿生活驿站 首页">
+        <span class="brand-mark" aria-hidden="true">集</span>
+        <span class="brand-text">
+          <strong>青春集市</strong>
+          <small>比思睿生活驿站</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="主导航">
+        <ul class="nav-list">
+          <li><a href="#map" class="nav-link">档口地图</a></li>
+          <li><a href="#stalls" class="nav-link">全部档口</a></li>
+          <li><a href="#beyond" class="nav-link">不止于食堂</a></li>
+          <li><a href="#gallery" class="nav-link">食堂环境</a></li>
+          <li><a href="#news" class="nav-link">活动公告</a></li>
+          <li><a href="#feedback" class="nav-link">意见反馈</a></li>
+        </ul>
+      </nav>
+
+      <a class="btn btn-primary btn-sm nav-cta" href="#stalls">今天吃什么</a>
+
+      <button class="nav-toggle" id="navToggle" type="button"
+              aria-expanded="false" aria-controls="mainNav" aria-label="打开导航菜单">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="nav-backdrop" id="navBackdrop" hidden></div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ 1. Hero 首屏 ============ -->
+    <section class="hero" id="home">
+      <div class="hero-media" aria-hidden="true">
+        <picture>
+          <source srcset="assets/exterior-1.webp" type="image/webp">
+          <img src="assets/exterior-1.jpg" alt="" fetchpriority="high" decoding="async">
+        </picture>
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="container hero-content">
+        <p class="hero-kicker">大连理工大学盘锦校区 · 第三食堂</p>
+        <h1 class="hero-title">
+          青春集市
+          <span class="hero-title-sub">比思睿生活驿站</span>
+        </h1>
+        <p class="hero-desc">吃饭、阅读、交流、办事——一座食堂，装得下青春的大部分日常。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#stalls">今天吃什么</a>
+          <a class="btn btn-ghost" href="#map">查看档口</a>
+        </div>
+      </div>
+      <a class="hero-scroll" href="#quickinfo" aria-label="向下浏览快捷信息">
+        <span aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- ============ 2. 快捷信息栏 ============ -->
+    <section class="quickinfo" id="quickinfo" aria-label="快捷信息">
+      <div class="container">
+        <div class="quickinfo-grid">
+          <div class="info-card">
+            <span class="info-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+            </span>
+            <div class="info-text">
+              <h3>营业时间</h3>
+              <p>以食堂现场公示为准</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <span class="info-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h3M13 12h3M8 16h3M13 16h3"/></svg>
+            </span>
+            <div class="info-text">
+              <h3>支付方式</h3>
+              <p>扫码点单，无需使用 i 大工</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <span class="info-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            </span>
+            <div class="info-text">
+              <h3>所在位置</h3>
+              <p>B03 · 第三食堂</p>
+            </div>
+          </div>
+
+          <a class="info-card info-card--link" href="#map">
+            <span class="info-thumb" aria-hidden="true">
+              <picture>
+                <source srcset="assets/map-sign.webp" type="image/webp">
+                <img src="assets/map-sign.jpg" alt="" loading="lazy" decoding="async">
+              </picture>
+            </span>
+            <div class="info-text">
+              <h3>导视牌</h3>
+              <p>查看档口分布 →</p>
+            </div>
+          </a>
+        </div>
+        <p class="quickinfo-note">具体菜品、价格、营业时间与活动以食堂现场公示为准。</p>
+      </div>
+    </section>
+
+    <!-- ============ 3. 档口地图（核心） ============ -->
+    <section class="map-section section" id="map">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-kicker">CANTEEN MAP</p>
+          <h2 class="section-title">档口地图</h2>
+          <p class="section-desc">布局参照食堂导视牌；点击铺位即可查看档口实景照片。</p>
+        </header>
+
+        <div class="map-layout">
+          <!-- 交互平面图：分区与铺位由 script.js 依据 data.js 渲染 -->
+          <div class="map-canvas" id="mapCanvas" role="group" aria-label="食堂档口分布交互图">
+            <div class="map-zones" id="mapZones" aria-hidden="true"></div>
+            <div class="map-doors" id="mapDoors" aria-hidden="true"></div>
+            <div class="map-pins" id="mapPins"></div>
+            <p class="map-fallback" hidden>地图加载中，请稍候……</p>
+          </div>
+
+          <aside class="map-side" aria-label="地图图例与原始方位图">
+            <h3 class="map-side-title">分区图例</h3>
+            <ul class="map-legend" id="mapLegend"></ul>
+            <figure class="map-original">
+              <picture>
+                <source srcset="assets/map-position.webp" type="image/webp">
+                <img src="assets/map-position.png" alt="档口方位手写示意图" loading="lazy" decoding="async">
+              </picture>
+              <figcaption>原始方位图（手写视角）</figcaption>
+            </figure>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. 档口列表 ============ -->
+    <section class="stalls section section--alt" id="stalls">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-kicker">ALL STALLS</p>
+          <h2 class="section-title">全部档口</h2>
+          <p class="section-desc">搜索或按分类筛选，点击卡片查看档口详情与菜单。</p>
+        </header>
+
+        <div class="stall-toolbar">
+          <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+            <input type="search" id="stallSearch" placeholder="搜索档口：肯德基、米线、奶茶……" aria-label="搜索档口" autocomplete="off">
+            <button class="search-clear" id="searchClear" type="button" aria-label="清空搜索" hidden>×</button>
+          </div>
+          <div class="chip-row" id="categoryChips" role="group" aria-label="档口分类筛选"></div>
+        </div>
+
+        <p class="stall-count" id="stallCount" aria-live="polite"></p>
+        <div class="stall-grid" id="stallGrid"></div>
+
+        <div class="stall-empty" id="stallEmpty" hidden>
+          <p class="stall-empty-title">没有找到相关档口</p>
+          <p class="stall-empty-desc">换个关键词试试，或点击「全部」查看所有档口。</p>
+          <button class="btn btn-ghost btn-sm" id="stallEmptyReset" type="button">重置筛选</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. 不止于食堂 ============ -->
+    <section class="beyond section" id="beyond">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-kicker">MORE THAN A CANTEEN</p>
+          <h2 class="section-title">不止于食堂</h2>
+          <p class="section-desc">吃饭之外，这里还有书声、服务与闲聊。</p>
+        </header>
+
+        <div class="beyond-grid">
+          <article class="beyond-card" tabindex="0" data-beyond="reading">
+            <div class="beyond-media">
+              <picture>
+                <source srcset="assets/region-reading.webp" type="image/webp">
+                <img src="assets/region-reading.jpg" alt="阅读区：书架与书吧" loading="lazy" decoding="async">
+              </picture>
+              <span class="beyond-hint" aria-hidden="true">查看大图</span>
+            </div>
+            <div class="beyond-body">
+              <h3 class="beyond-name">阅读区</h3>
+              <p class="beyond-tag">Reading Area · 吃学分离</p>
+              <p class="beyond-desc">安静的书吧，提供充电插座；严禁带入汤汁类食物，吃学分离，环境清爽。</p>
+              <button class="beyond-more" type="button" data-photo="assets/region-reading.jpg" data-photo-webp="assets/region-reading.webp" data-title="阅读区" data-desc="安静的书吧，提供充电插座；严禁带入汤汁类食物，吃学分离，环境清爽。">查看大图</button>
+            </div>
+          </article>
+
+          <article class="beyond-card" tabindex="0" data-beyond="service">
+            <div class="beyond-media">
+              <picture>
+                <source srcset="assets/region-service.webp" type="image/webp">
+                <img src="assets/region-service.jpg" alt="大使服务中心：环形服务台" loading="lazy" decoding="async">
+              </picture>
+              <span class="beyond-hint" aria-hidden="true">查看大图</span>
+            </div>
+            <div class="beyond-body">
+              <h3 class="beyond-name">大使服务中心</h3>
+              <p class="beyond-tag">Service Center · 一站式服务</p>
+              <p class="beyond-desc">校园大使驻点，提供失物招领、咨询引导、意见反馈一站式服务。</p>
+              <button class="beyond-more" type="button" data-photo="assets/region-service.jpg" data-photo-webp="assets/region-service.webp" data-title="大使服务中心" data-desc="校园大使驻点，提供失物招领、咨询引导、意见反馈一站式服务。">查看大图</button>
+            </div>
+          </article>
+
+          <article class="beyond-card" tabindex="0" data-beyond="communication">
+            <div class="beyond-media">
+              <picture>
+                <source srcset="assets/region-communication.webp" type="image/webp">
+                <img src="assets/region-communication.jpg" alt="交流区：电视沙发与茶瀑布" loading="lazy" decoding="async">
+              </picture>
+              <span class="beyond-hint" aria-hidden="true">查看大图</span>
+            </div>
+            <div class="beyond-body">
+              <h3 class="beyond-name">交流区</h3>
+              <p class="beyond-tag">Communication Area · 开放式社交空间</p>
+              <p class="beyond-desc">开放式社交空间，配有电视屏幕和舒适座椅，是课后放松、小组讨论的好去处。</p>
+              <button class="beyond-more" type="button" data-photo="assets/region-communication.jpg" data-photo-webp="assets/region-communication.webp" data-title="交流区" data-desc="开放式社交空间，配有电视屏幕和舒适座椅，是课后放松、小组讨论的好去处。">查看大图</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. 食堂环境轮播 ============ -->
+    <section class="gallery section section--alt" id="gallery">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-kicker">GALLERY</p>
+          <h2 class="section-title">食堂环境</h2>
+          <p class="section-desc">从门头到角落，先看看集市的样子。</p>
+        </header>
+
+        <div class="carousel" id="carousel" aria-roledescription="轮播" aria-label="食堂环境图片轮播">
+          <div class="carousel-viewport">
+            <div class="carousel-track" id="carouselTrack">
+              <figure class="slide">
+                <picture>
+                  <source srcset="assets/exterior-1.webp" type="image/webp">
+                  <img src="assets/exterior-1.jpg" alt="青春集市门头，绿字招牌与红砖外墙" loading="lazy" decoding="async">
+                </picture>
+                <figcaption>青春集市门头 · 绿字招牌</figcaption>
+              </figure>
+              <figure class="slide">
+                <picture>
+                  <source srcset="assets/exterior-2.webp" type="image/webp">
+                  <img src="assets/exterior-2.jpg" alt="食堂外景与肯德基门店" loading="lazy" decoding="async">
+                </picture>
+                <figcaption>外景 · 临街门店</figcaption>
+              </figure>
+              <figure class="slide">
+                <picture>
+                  <source srcset="assets/exterior-3.webp" type="image/webp">
+                  <img src="assets/exterior-3.jpg" alt="B03 门前吉祥物" loading="lazy" decoding="async">
+                </picture>
+                <figcaption>B03 · 门前吉祥物</figcaption>
+              </figure>
+              <figure class="slide">
+                <picture>
+                  <source srcset="assets/interior-1.webp" type="image/webp">
+                  <img src="assets/interior-1.jpg" alt="室内盆景造景" loading="lazy" decoding="async">
+                </picture>
+                <figcaption>室内 · 盆景造景</figcaption>
+              </figure>
+              <figure class="slide">
+                <picture>
+                  <source srcset="assets/interior-2.webp" type="image/webp">
+                  <img src="assets/interior-2.jpg" alt="毛泽东诗词文化墙" loading="lazy" decoding="async">
+                </picture>
+                <figcaption>文化墙 · 毛泽东诗词</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <button class="carousel-btn carousel-btn--prev" id="carouselPrev" type="button" aria-label="上一张">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+          </button>
+          <button class="carousel-btn carousel-btn--next" id="carouselNext" type="button" aria-label="下一张">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+          </button>
+
+          <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="选择图片"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. 活动公告 ============ -->
+    <section class="news section" id="news">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-kicker">NOTICE</p>
+          <h2 class="section-title">活动公告</h2>
+          <p class="section-desc">以下为占位内容，正式信息以食堂现场公示为准。</p>
+        </header>
+
+        <div class="news-grid">
+          <article class="news-card">
+            <span class="news-badge">占位</span>
+            <h3 class="news-title">新店开业</h3>
+            <p class="news-desc">新档口即将亮相，敬请期待。开业时间与优惠活动以现场公示为准。</p>
+            <p class="news-meta">时间：待定</p>
+          </article>
+          <article class="news-card">
+            <span class="news-badge">占位</span>
+            <h3 class="news-title">新品上市</h3>
+            <p class="news-desc">季节性新品筹备中，具体品类与价格以档口现场公示为准。</p>
+            <p class="news-meta">时间：待定</p>
+          </article>
+          <article class="news-card">
+            <span class="news-badge">占位</span>
+            <h3 class="news-title">活动预告</h3>
+            <p class="news-desc">校园活动策划中，形式与安排确定后将第一时间更新。</p>
+            <p class="news-meta">时间：待定</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 8. 意见反馈 ============ -->
+    <section class="feedback section section--alt" id="feedback">
+      <div class="container feedback-wrap">
+        <div class="feedback-intro">
+          <p class="section-kicker">FEEDBACK</p>
+          <h2 class="section-title">意见反馈</h2>
+          <p class="section-desc">菜品、服务、环境——你的每条意见，集市都听得到。提交后将由大使服务中心跟进处理。</p>
+          <ul class="feedback-points">
+            <li>失物招领、咨询引导也可到现场大使服务中心</li>
+            <li>联系方式为选填，留下更便于回复</li>
+          </ul>
+        </div>
+
+        <form class="feedback-form" id="feedbackForm" novalidate>
+          <div class="field">
+            <label class="field-label" for="fbType">反馈类型 <span class="req" aria-hidden="true">*</span></label>
+            <select class="field-control" id="fbType" required>
+              <option value="">请选择反馈类型</option>
+              <option value="dish">菜品质量</option>
+              <option value="service">服务态度</option>
+              <option value="environment">环境卫生</option>
+              <option value="facility">设施设备</option>
+              <option value="other">其他</option>
+            </select>
+            <p class="field-error" id="fbTypeError" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="fbContent">反馈内容 <span class="req" aria-hidden="true">*</span></label>
+            <textarea class="field-control" id="fbContent" rows="5" maxlength="500" required
+                      placeholder="请具体描述你遇到的情况或建议（500 字以内）"></textarea>
+            <div class="field-meta">
+              <p class="field-error" id="fbContentError" role="alert"></p>
+              <span class="field-counter"><span id="fbCount">0</span> / 500</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="fbContact">联系方式 <span class="optional">选填</span></label>
+            <input class="field-control" type="text" id="fbContact" maxlength="50"
+                   placeholder="手机号或微信号（选填，便于我们回复）">
+          </div>
+
+          <button class="btn btn-primary btn-block" type="submit" id="fbSubmit">提交反馈</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          <p class="form-note">接口预留中：当前提交将暂存于本机浏览器，接入云端数据库后自动同步。</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ 9. 页脚 ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#home" aria-label="返回顶部">
+          <span class="brand-mark" aria-hidden="true">集</span>
+          <span class="brand-text">
+            <strong>青春集市</strong>
+            <small>比思睿生活驿站</small>
+          </span>
+        </a>
+        <p class="footer-addr">地址：大连理工大学盘锦校区 · B03（第三食堂）</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="页脚导航">
+        <h3 class="footer-title">快速导航</h3>
+        <ul>
+          <li><a href="#map">档口地图</a></li>
+          <li><a href="#stalls">全部档口</a></li>
+          <li><a href="#beyond">不止于食堂</a></li>
+          <li><a href="#gallery">食堂环境</a></li>
+          <li><a href="#news">活动公告</a></li>
+          <li><a href="#feedback">意见反馈</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-notice">
+        <h3 class="footer-title">温馨提示</h3>
+        <p>具体菜品、价格、营业时间与活动以食堂现场公示为准。</p>
+        <p>本页面为校园生活信息展示页，图片均摄自食堂现场。</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 青春集市 · 比思睿生活驿站</p>
+    </div>
+  </footer>
+
+  <!-- ============ 弹层：照片查看（地图铺位 / 区域大图共用） ============ -->
+  <div class="modal" id="photoModal" hidden>
+    <div class="modal-backdrop" data-close="photoModal"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="photoModalTitle">
+      <button class="modal-close" type="button" data-close="photoModal" aria-label="关闭">×</button>
+      <figure class="modal-media">
+        <picture id="photoModalPicture">
+          <source id="photoModalSource" type="image/webp">
+          <img id="photoModalImg" alt="">
+        </picture>
+      </figure>
+      <div class="modal-body">
+        <h3 class="modal-title" id="photoModalTitle"></h3>
+        <p class="modal-desc" id="photoModalDesc"></p>
+        <div class="modal-actions">
+          <a class="btn btn-primary btn-sm" id="photoModalLink" href="#stalls" hidden>查看档口详情</a>
+          <button class="btn btn-ghost btn-sm" type="button" data-close="photoModal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 弹层：档口详情（含菜单预留位） ============ -->
+  <div class="modal" id="stallModal" hidden>
+    <div class="modal-backdrop" data-close="stallModal"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="stallModalTitle">
+      <button class="modal-close" type="button" data-close="stallModal" aria-label="关闭">×</button>
+      <figure class="modal-media">
+        <picture id="stallModalPicture">
+          <source id="stallModalSource" type="image/webp">
+          <img id="stallModalImg" alt="">
+        </picture>
+      </figure>
+      <div class="modal-body">
+        <div class="stall-modal-head">
+          <h3 class="modal-title" id="stallModalTitle"></h3>
+          <span class="stall-modal-cat" id="stallModalCat"></span>
+        </div>
+        <p class="stall-modal-zone" id="stallModalZone"></p>
+        <p class="modal-desc" id="stallModalDesc"></p>
+
+        <div class="menu-slot" id="stallMenuSlot">
+          <!-- 菜单预留位：有真实菜单照片时展示照片，否则展示占位说明（由 script.js 填充） -->
+        </div>
+
+        <p class="modal-note">具体菜品、价格、营业时间与活动以食堂现场公示为准。</p>
+        <div class="modal-actions">
+          <button class="btn btn-ghost btn-sm" type="button" data-close="stallModal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="to-top" id="toTop" type="button" aria-label="回到顶部" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 14 7-7 7 7"/></svg>
+  </button>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
