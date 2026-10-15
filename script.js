@@ -113,7 +113,7 @@
   onScroll();
 
   /* =========================================================
-     2. 档口地图：分区 / 出入口 / 铺位 / 图例
+     2. 档口地图：分区 / 功能区 / 出入口 / 地标 / 铺位 / 图例
      ========================================================= */
   function renderMap() {
     var zonesEl = $("#mapZones");
@@ -122,7 +122,7 @@
     var legendEl = $("#mapLegend");
     if (!zonesEl || !DATA) { return; }
 
-    /* 分区底色块 */
+    /* 分区底色块 + 标签 */
     Object.keys(DATA.zones).forEach(function (id) {
       var z = DATA.zones[id];
       var block = el("div", "map-zone");
@@ -131,7 +131,11 @@
       block.style.top = z.rect.y + "%";
       block.style.width = z.rect.w + "%";
       block.style.height = z.rect.h + "%";
-      block.appendChild(el("span", "zone-label", z.name));
+      var label = el("span", "zone-label", z.name);
+      if (z.labelPos === "top-right") { label.classList.add("zone-label--tr"); }
+      if (z.labelPos === "bottom-right") { label.classList.add("zone-label--br"); }
+      if (z.labelPos === "bottom-left") { label.classList.add("zone-label--bl"); }
+      block.appendChild(label);
       zonesEl.appendChild(block);
 
       /* 桌面悬停高亮 */
@@ -145,11 +149,39 @@
       });
     });
 
-    /* 出入口 */
+    /* 分区内的功能区域（就餐区 / 研讨室等，纯标注） */
+    (DATA.areaBlocks || []).forEach(function (a) {
+      var area = el("div", "map-area", a.name);
+      area.style.left = a.rect.x + "%";
+      area.style.top = a.rect.y + "%";
+      area.style.width = a.rect.w + "%";
+      area.style.height = a.rect.h + "%";
+      zonesEl.appendChild(area);
+    });
+
+    /* 出入口（按 edge 贴边，坐标来自 data.js） */
     (DATA.doors || []).forEach(function (d) {
       var door = el("span", "map-door", d.name);
       door.dataset.door = d.id;
+      if (d.edge === "top") {
+        door.style.left = (d.x != null ? d.x : 50) + "%";
+        door.style.top = "4px";
+      } else if (d.edge === "right") {
+        door.style.right = "6px";
+        door.style.top = (d.y != null ? d.y : 50) + "%";
+      } else {
+        door.style.left = "6px";
+        door.style.top = (d.y != null ? d.y : 50) + "%";
+      }
       doorsEl.appendChild(door);
+    });
+
+    /* 地标（无照片，纯标注） */
+    (DATA.landmarks || []).forEach(function (lm) {
+      var mark = el("span", "map-landmark", lm.name);
+      mark.style.left = lm.pos.x + "%";
+      mark.style.top = lm.pos.y + "%";
+      pinsEl.appendChild(mark);
     });
 
     /* 铺位：档口 + 附加点位 */
@@ -170,16 +202,20 @@
       }));
     });
 
-    /* 图例（含档口计数） */
+    /* 图例（档口计数，无档口的分区显示服务点计数） */
     Object.keys(DATA.zones).forEach(function (id) {
       var z = DATA.zones[id];
-      var count = (DATA.stalls || []).filter(function (s) { return s.zoneId === id; }).length;
+      var stallCount = (DATA.stalls || []).filter(function (s) { return s.zoneId === id; }).length;
+      var pointCount = (DATA.mapPoints || []).filter(function (p) { return p.zoneId === id; }).length;
+      var countText = stallCount > 0
+        ? stallCount + " 个档口"
+        : (pointCount > 0 ? pointCount + " 个服务点" : "");
       var li = el("li");
       var dot = el("span", "legend-dot");
       dot.dataset.zone = id;
       li.appendChild(dot);
       li.appendChild(el("span", null, z.name));
-      li.appendChild(el("span", "legend-count", count + " 个档口"));
+      li.appendChild(el("span", "legend-count", countText));
       legendEl.appendChild(li);
     });
   }

@@ -1,7 +1,7 @@
 /* =========================================================
    青春集市 · 比思睿生活驿站 — data.js
    数据层：站点信息 / 分类 / 分区 / 档口 / 地图点位 / 反馈配置
-   方位坐标基于手写方位图与导视牌视角（x、y 为地图画布百分比，左上为原点）
+   方位坐标为用户确认的真实空间分布（x、y 为地图画布百分比，左上为原点）
    ========================================================= */
 
 window.CANTEEN_DATA = {
@@ -31,19 +31,30 @@ window.CANTEEN_DATA = {
     { id: "snack",   name: "炸鸡小吃" }
   ],
 
-  /* ---------- 地图分区（rect 为画布百分比） ---------- */
+  /* ---------- 地图分区（rect 为画布百分比；labelPos 为分区标签位置） ---------- */
   zones: {
-    north:  { name: "北门 · 简餐区",   short: "北门",     rect: { x: 3,    y: 1.5,  w: 94,   h: 20   } },
-    east:   { name: "东门 · 服务区",   short: "东门",     rect: { x: 73,   y: 24,   w: 24,   h: 74   } },
-    west:   { name: "西侧 · 文化区",   short: "西侧文化区", rect: { x: 3,    y: 24,   w: 27,   h: 74   } },
-    center: { name: "中部 · 交流区",   short: "中部交流区", rect: { x: 32,   y: 24,   w: 39.5, h: 74   } }
+    north:  { name: "北门·简餐区",   short: "北门",       labelPos: "top-right",    rect: { x: 3,  y: 2,  w: 94, h: 21 } },
+    east:   { name: "东门·服务区",   short: "东门",       labelPos: "bottom-right", rect: { x: 76, y: 24, w: 21, h: 74 } },
+    west:   { name: "西侧·文化区",   short: "西侧文化区", labelPos: "top-right",    rect: { x: 3,  y: 24, w: 23, h: 74 } },
+    center: { name: "中部·交流区",   short: "中部交流区", labelPos: "top-right",    rect: { x: 28, y: 24, w: 46, h: 74 } }
   },
 
-  /* ---------- 出入口 ---------- */
+  /* ---------- 出入口（edge: top/right/left；x/y 为百分比） ---------- */
   doors: [
-    { id: "north", name: "北门" },
-    { id: "east",  name: "东门" },
-    { id: "west",  name: "西门" }
+    { id: "north", name: "北门", edge: "top",   x: 18 },
+    { id: "east",  name: "东门", edge: "right", y: 25 },
+    { id: "west",  name: "西门", edge: "left",  y: 71 }
+  ],
+
+  /* ---------- 分区内的功能区域（纯标注，无交互） ---------- */
+  areaBlocks: [
+    { id: "dining",  name: "就餐区", zoneId: "east", rect: { x: 78, y: 45, w: 17, h: 13 } },
+    { id: "seminar", name: "研讨室", zoneId: "east", rect: { x: 78, y: 67, w: 17, h: 13 } }
+  ],
+
+  /* ---------- 地图地标（无照片，纯标注） ---------- */
+  landmarks: [
+    { id: "sculpture", name: "雕塑", zoneId: "west", pos: { x: 10, y: 80 } }
   ],
 
   /* ---------- 档口列表 ---------- */
@@ -57,7 +68,7 @@ window.CANTEEN_DATA = {
       desc: "快餐连锁品牌，位于北门简餐区，炸鸡、汉堡与经典套餐现点现做。",
       photo: { jpg: "assets/stall-kfc.jpg", webp: "assets/stall-kfc.webp", alt: "肯德基门店内景" },
       menu: null,
-      pos: { x: 16, y: 11 }
+      pos: { x: 31, y: 14 }
     },
     {
       id: "huangmen",
@@ -68,7 +79,7 @@ window.CANTEEN_DATA = {
       desc: "黄焖鸡米饭档口，鸡肉浓汤现焖，配米饭食用，位于北门简餐区。",
       photo: { jpg: "assets/stall-huangmen.jpg", webp: "assets/stall-huangmen.webp", alt: "黄焖鸡米饭档口" },
       menu: null,
-      pos: { x: 36, y: 11 }
+      pos: { x: 50, y: 14 }
     },
     {
       id: "chicken",
@@ -79,7 +90,7 @@ window.CANTEEN_DATA = {
       desc: "炸鸡小吃档口，鸡柳等炸物现炸现售，位于北门简餐区。",
       photo: { jpg: "assets/stall-chicken.jpg", webp: "assets/stall-chicken.webp", alt: "鸡柳大人档口" },
       menu: null,
-      pos: { x: 56, y: 11 }
+      pos: { x: 69, y: 14 }
     },
     {
       id: "mixue",
@@ -90,15 +101,15 @@ window.CANTEEN_DATA = {
       desc: "连锁茶饮品牌，冰淇淋与经典茶饮，位于北门简餐区。",
       photo: { jpg: "assets/stall-mixue.jpg", webp: "assets/stall-mixue.webp", alt: "蜜雪冰城档口" },
       menu: null,
-      pos: { x: 78, y: 11 }
+      pos: { x: 88, y: 14 }
     },
     {
       id: "dai",
       name: "傣巷记 · 云南小锅米线",
       short: "傣巷记",
       categoryId: "noodle",
-      zoneId: "east",
-      desc: "云南小锅米线档口，米线现煮现售，位于东门服务区一侧。",
+      zoneId: "west",
+      desc: "云南小锅米线档口，米线现煮现售，位于西侧文化区。",
       photo: { jpg: "assets/stall-dai.jpg", webp: "assets/stall-dai.webp", alt: "傣巷记档口" },
       menu: {
         source: "菜单整理自档口点单页面截图，价格如有变动以现场公示为准",
@@ -158,29 +169,29 @@ window.CANTEEN_DATA = {
           { jpg: "assets/menu-dai-2.jpg", webp: "assets/menu-dai-2.webp", caption: "点单页面截图 · 加料专区与芝麻烧饼" }
         ]
       },
-      pos: { x: 85, y: 34 }
+      pos: { x: 14, y: 35 }
     },
     {
       id: "bakery",
       name: "晴诺拾光",
       short: "晴诺拾光",
       categoryId: "bakery",
-      zoneId: "east",
-      desc: "烘焙档口，面包、蛋糕与点心，位于东门服务区一侧。",
+      zoneId: "west",
+      desc: "烘焙档口，面包、蛋糕与点心，位于西侧文化区。",
       photo: { jpg: "assets/stall-bakery.jpg", webp: "assets/stall-bakery.webp", alt: "晴诺拾光烘焙档口" },
       menu: null,
-      pos: { x: 85, y: 48 }
+      pos: { x: 14, y: 47 }
     },
     {
       id: "lawson",
       name: "罗森便利店",
       short: "罗森",
       categoryId: "store",
-      zoneId: "east",
-      desc: "便利店，便当、零食、饮品与日常用品一站购齐，位于东门服务区一侧。",
+      zoneId: "center",
+      desc: "便利店，便当、零食、饮品与日常用品一站购齐，位于中部交流区西北角。",
       photo: { jpg: "assets/stall-lawson.jpg", webp: "assets/stall-lawson.webp", alt: "罗森便利店门店" },
       menu: null,
-      pos: { x: 85, y: 62 }
+      pos: { x: 31, y: 29 }
     },
     {
       id: "hamburger0090",
@@ -191,18 +202,18 @@ window.CANTEEN_DATA = {
       desc: "汉堡专营档口，位于西侧文化区，现做汉堡与小食。",
       photo: { jpg: "assets/stall-0090.jpg", webp: "assets/stall-0090.webp", alt: "0090汉堡工厂档口" },
       menu: null,
-      pos: { x: 16.5, y: 36 }
+      pos: { x: 14, y: 59 }
     },
     {
       id: "luckin",
       name: "瑞幸咖啡",
       short: "瑞幸",
       categoryId: "coffee",
-      zoneId: "west",
-      desc: "连锁咖啡品牌，咖啡与轻食饮品，位于西侧文化区。",
+      zoneId: "center",
+      desc: "连锁咖啡品牌，咖啡与轻食饮品，位于中部交流区。",
       photo: { jpg: "assets/stall-luckin.jpg", webp: "assets/stall-luckin.webp", alt: "瑞幸咖啡档口" },
       menu: null,
-      pos: { x: 16.5, y: 64 }
+      pos: { x: 55, y: 74 }
     },
     {
       id: "tea",
@@ -210,10 +221,10 @@ window.CANTEEN_DATA = {
       short: "茶瀑布",
       categoryId: "tea",
       zoneId: "center",
-      desc: "茶饮档口，现制茶饮，紧邻中部交流区。",
+      desc: "茶饮档口，现制茶饮，位于中部交流区东侧。",
       photo: { jpg: "assets/stall-tea.jpg", webp: "assets/stall-tea.webp", alt: "茶瀑布档口" },
       menu: null,
-      pos: { x: 40, y: 38 }
+      pos: { x: 68, y: 40 }
     },
     {
       id: "roll",
@@ -221,14 +232,14 @@ window.CANTEEN_DATA = {
       short: "功夫卷饼",
       categoryId: "roll",
       zoneId: "center",
-      desc: "卷饼档口，肉灌饼与卷饼系列现做现卖，位于中部交流区。",
+      desc: "卷饼档口，肉灌饼与卷饼系列现做现卖，位于中部交流区，与荔枝鸡牛肉双拼饭相邻。",
       photo: { jpg: "assets/stall-roll.jpg", webp: "assets/stall-roll.webp", alt: "功夫卷饼档口" },
       menu: {
         jpg: "assets/menu-roll.jpg",
         webp: "assets/menu-roll.webp",
         caption: "档口菜单灯箱（摄于现场）· 价格以现场公示为准"
       },
-      pos: { x: 43, y: 56 }
+      pos: { x: 46, y: 56 }
     },
     {
       id: "rice",
@@ -236,14 +247,14 @@ window.CANTEEN_DATA = {
       short: "荔枝饭",
       categoryId: "rice",
       zoneId: "center",
-      desc: "盖饭档口，荔枝鸡牛肉双拼饭与系列套餐，位于中部交流区。",
+      desc: "盖饭档口，荔枝鸡牛肉双拼饭与系列套餐，位于中部交流区，与功夫卷饼相邻。",
       photo: { jpg: "assets/stall-rice.jpg", webp: "assets/stall-rice.webp", alt: "荔枝鸡牛肉双拼饭档口" },
       menu: {
         jpg: "assets/menu-rice.jpg",
         webp: "assets/menu-rice.webp",
         caption: "档口菜单灯箱（摄于现场）· 价格以现场公示为准"
       },
-      pos: { x: 62, y: 64 }
+      pos: { x: 64, y: 56 }
     }
   ],
 
@@ -257,7 +268,7 @@ window.CANTEEN_DATA = {
       zoneId: "east",
       desc: "校园大使驻点，提供失物招领、咨询引导、意见反馈一站式服务。",
       photo: { jpg: "assets/region-service.jpg", webp: "assets/region-service.webp", alt: "大使服务中心环形服务台" },
-      pos: { x: 85, y: 76 }
+      pos: { x: 86, y: 36 }
     },
     {
       id: "poetry-wall",
@@ -265,9 +276,9 @@ window.CANTEEN_DATA = {
       short: "诗词墙",
       kind: "scenery",
       zoneId: "west",
-      desc: "西侧文化区一隅，毛泽东诗词文化墙。",
+      desc: "西侧文化区一隅，毛泽东诗词文化墙，与门前雕塑东西一线。",
       photo: { jpg: "assets/interior-2.jpg", webp: "assets/interior-2.webp", alt: "毛泽东诗词文化墙" },
-      pos: { x: 16.5, y: 48 }
+      pos: { x: 25, y: 80 }
     },
     {
       id: "youth-market",
@@ -277,7 +288,7 @@ window.CANTEEN_DATA = {
       zoneId: "west",
       desc: "青春集市二楼暂未开放，开放安排以现场通知为准。",
       photo: { jpg: "assets/region-floor2.jpg", webp: "assets/region-floor2.webp", alt: "青春集市二楼入口，暂未开放" },
-      pos: { x: 16.5, y: 82 }
+      pos: { x: 14, y: 90 }
     }
   ],
 

@@ -480,11 +480,29 @@ section[id], .hero { scroll-margin-top: calc(var(--header-h) + 12px); }
   letter-spacing: .04em;
   white-space: nowrap;
 }
+.zone-label--tr { left: auto; right: 8px; }
+.zone-label--bl { top: auto; bottom: 8px; }
+.zone-label--br { top: auto; bottom: 8px; left: auto; right: 8px; }
 .map-zone[data-zone="north"] .zone-label  { color: var(--orange-deep); }
 .map-zone[data-zone="east"] .zone-label   { color: var(--green); }
 .map-zone[data-zone="west"] .zone-label   { color: var(--brick); }
 
-/* 门 */
+/* 分区内的功能区域（就餐区 / 研讨室，纯标注） */
+.map-area {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-m);
+  background: rgba(62, 142, 99, .10);
+  border: 1.5px solid rgba(62, 142, 99, .28);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+
+/* 门（位置由 data.js 的 edge/x/y 数据驱动，内联设置） */
 .map-door {
   position: absolute;
   display: inline-flex;
@@ -506,9 +524,6 @@ section[id], .hero { scroll-margin-top: calc(var(--header-h) + 12px); }
   border-radius: 2px;
   background: #FFD9AE;
 }
-.map-door[data-door="north"] { top: 8px; left: 50%; transform: translateX(-50%); }
-.map-door[data-door="east"]  { top: 86%; right: 8px; }
-.map-door[data-door="west"]  { top: 54%; left: 8px; }
 
 /* 档口铺位 */
 .map-pin {
@@ -564,6 +579,21 @@ section[id], .hero { scroll-margin-top: calc(var(--header-h) + 12px); }
   color: var(--ink-3);
 }
 
+/* 地标（无照片，纯标注，不可点击） */
+.map-landmark {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 2px 8px;
+  border-radius: var(--r-full);
+  background: rgba(255, 255, 255, .75);
+  border: 1px dashed var(--ink-3);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 /* 图例与原始方位图 */
 .map-side {
   padding: 18px;
@@ -592,19 +622,6 @@ section[id], .hero { scroll-margin-top: calc(var(--header-h) + 12px); }
 .legend-dot[data-zone="west"]   { background: rgba(168, 82, 47, .26); }
 .legend-dot[data-zone="center"] { background: rgba(30, 91, 63, .16); }
 .legend-count { margin-left: auto; font-size: 12px; color: var(--ink-3); }
-
-.map-original { margin: 16px 0 0; }
-.map-original picture, .map-original img {
-  border-radius: var(--r-m);
-  border: 1px solid var(--line);
-  overflow: hidden;
-}
-.map-original figcaption {
-  margin-top: 8px;
-  font-size: 12px;
-  color: var(--ink-3);
-  text-align: center;
-}
 
 /* ---------- 8. 档口列表 ---------- */
 .stall-toolbar {
@@ -1217,6 +1234,8 @@ select.field-control {
   .map-pin::after { bottom: -6px; width: 6px; height: 6px; margin-left: -3px; }
   .zone-label { font-size: 10px; padding: 2px 8px; }
   .map-door { font-size: 10px; padding: 2px 8px; }
+  .map-area { font-size: 11px; border-radius: 10px; }
+  .map-landmark { font-size: 10px; padding: 2px 7px; }
   .map-side { padding: 14px; }
 }
 
