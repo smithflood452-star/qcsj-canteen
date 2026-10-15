@@ -1,0 +1,25 @@
+# =========================================================
+# 青春集市 · 比思睿生活驿站 — Cloudflare 部署配置
+# 放置于仓库根目录，Cloudflare 构建时自动读取
+#
+# 作用：
+#   1. pages_build_output_dir = "." 声明这是 Pages 项目，
+#      静态资产 = 仓库根目录，functions/ 编译为 Pages Functions
+#   2. [[d1_databases]] 把 D1 数据库绑定为 env.DB，
+#      与 functions/api/feedback.js 里的 env.DB 对应
+# =========================================================
+
+name = "qcsj-canteen"
+
+# 兼容性日期：保持不动即可；如 Cloudflare 提示过低可改为更新日期
+compatibility_date = "2025-10-01"
+
+# Pages 项目：静态文件目录 = 仓库根目录（无需构建步骤）
+pages_build_output_dir = "."
+
+# ---- D1 数据库绑定 ----
+# 变量名 DB 必须与 functions/api/feedback.js 中 env.DB 一致
+[[d1_databases]]
+binding = "DB"
+database_name = "qcsc-canteen"
+database_id = "5a416254-f254-482a-908d-9e7ead06293a"

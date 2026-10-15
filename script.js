@@ -683,13 +683,26 @@
       status.textContent = "正在提交，请稍候…";
 
       submitFeedback(payload)
-        .then(function (mode) {
-          status.classList.add("is-success");
-          status.textContent = mode === "api"
-            ? "提交成功，感谢你的反馈！我们将尽快跟进处理。"
-            : "接口暂未接入，你的反馈已暂存到本机浏览器，接入后将自动同步。感谢！";
+        .then(function (result) {
           form.reset();
           counter.textContent = "0";
+          if (result.code === 200) {
+            status.classList.add("is-success");
+            status.textContent = "提交成功，感谢你的反馈！我们将尽快跟进处理。";
+          } else if (result.code === 501) {
+            /* 接口已部署但未绑 D1：双保险本地暂存 */
+            status.classList.add("is-success");
+            status.textContent = "接口暂未接入云端，你的反馈已暂存到本机浏览器，接入后将自动同步。感谢！";
+          } else if (result.code === 500 && result.error === "TABLE_MISSING") {
+            status.classList.add("is-error");
+            status.textContent = "数据库表未创建（请联系管理员执行建表 SQL），本次内容已暂存到本机。";
+          } else if (result.code > 0) {
+            status.classList.add("is-error");
+            status.textContent = "接口暂时异常，已暂存到本机，请稍后重试或到现场大使服务中心反馈。";
+          } else {
+            status.classList.add("is-error");
+            status.textContent = "网络异常，已暂存到本机，请稍后重试或到现场大使服务中心反馈。";
+          }
         })
         .catch(function () {
           status.classList.add("is-error");
@@ -701,7 +714,11 @@
         });
     });
 
-    /* 预留 API：成功返回 "api"；未接入 / 请求失败时本地暂存并返回 "local" */
+    /* 预留 API：返回 { code, error }
+       code 200   = 已写入 D1
+       code 501   = 函数已部署但未绑定 D1（前端本地暂存）
+       code 500   = 函数报错（如表未建）
+       code 0     = 网络不通 / 接口不存在（前端本地暂存） */
     function submitFeedback(payload) {
       var endpoint = (DATA.feedback && DATA.feedback.endpoint) || "/api/feedback";
       var storageKey = (DATA.feedback && DATA.feedback.storageKey) || "qcsj_feedback_queue";
@@ -716,17 +733,23 @@
 
       return new Promise(function (resolve) {
         /* 浏览器不支持 fetch 时直接走本地兜底 */
-        if (typeof fetch !== "function") { saveLocal(); resolve("local"); return; }
+        if (typeof fetch !== "function") { saveLocal(); resolve({ code: 0 }); return; }
         fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         }).then(function (res) {
-          if (!res.ok) { saveLocal(); resolve("local"); return; }
-          resolve("api");
+          return res.json().then(function (body) {
+            if (res.ok) { resolve({ code: 200 }); return; }
+            saveLocal();
+            resolve({ code: res.status, error: body && body.error });
+          }).catch(function () {
+            saveLocal();
+            resolve({ code: res.status });
+          });
         }).catch(function () {
           saveLocal();
-          resolve("local");
+          resolve({ code: 0 });
         });
       });
     }
