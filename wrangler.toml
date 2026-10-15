@@ -1,24 +1,28 @@
 # =========================================================
-# 青春集市 · 比思睿生活驿站 — Cloudflare 部署配置
-# 放置于仓库根目录，Cloudflare 构建时自动读取
+# 青春集市 · 比思睿生活驿站 — Cloudflare Workers 部署配置
+# 项目类型：Workers（Git 连接自动构建）
 #
-# 作用：
-#   1. pages_build_output_dir = "." 声明这是 Pages 项目，
-#      静态资产 = 仓库根目录，functions/ 编译为 Pages Functions
-#   2. [[d1_databases]] 把 D1 数据库绑定为 env.DB，
-#      与 functions/api/feedback.js 里的 env.DB 对应
+# 结构说明：
+#   - 构建命令把网站文件打包进 dist/（只含站点文件，不含 .git 等）
+#   - [assets] 静态资产 = dist/，由 Cloudflare 资产服务直接提供
+#   - feedback-worker.js 是接口脚本，只处理静态资产匹配不到的
+#     请求（目前仅 POST /api/feedback）
+#   - D1 绑定 env.DB 供接口写入反馈数据
+#
+# Dashboard → Settings → Builds 需配置：
+#   构建命令：rm -rf dist && mkdir dist && cp -r index.html styles.css data.js script.js assets dist/
+#   部署指令：npx wrangler deploy
 # =========================================================
 
 name = "qcsj-canteen"
-
-# 兼容性日期：保持不动即可；如 Cloudflare 提示过低可改为更新日期
+main = "feedback-worker.js"
 compatibility_date = "2025-10-01"
 
-# Pages 项目：静态文件目录 = 仓库根目录（无需构建步骤）
-pages_build_output_dir = "."
+# 静态资产目录 = 构建产物 dist/
+[assets]
+directory = "./dist"
 
-# ---- D1 数据库绑定 ----
-# 变量名 DB 必须与 functions/api/feedback.js 中 env.DB 一致
+# ---- D1 数据库绑定（变量名与 feedback-worker.js 中 env.DB 对应）----
 [[d1_databases]]
 binding = "DB"
 database_name = "qcsc-canteen"
